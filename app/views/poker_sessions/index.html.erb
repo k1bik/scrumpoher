@@ -1,0 +1,5 @@
+<% PokerSession.all.each do |s| %>
+  <%= link_to s.name, poker_session_path(s) %>
+<% end %>
+
+<%= link_to "Новая комната", new_poker_session_path %>

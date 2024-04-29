@@ -1,0 +1,12 @@
+<%= turbo_frame_tag :form do %>
+  <%= form_with scope: :poker_session_participant, url: poker_session_poker_session_participants_path(@view_model.poker_session_id), data: { turbo_frame: "_top" } do |f| %>
+    <div class="row">
+      <div class="col">
+        <%= f.text_field :name, class: "form-control", placeholder: "Имя" %>
+      </div>
+    </div>
+
+    <%= f.submit "Создать", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+

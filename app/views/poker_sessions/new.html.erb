@@ -1,0 +1,15 @@
+<%= turbo_frame_tag :form do %>
+  <%= form_with scope: :poker_session, url: poker_sessions_path, data: { turbo_frame: "_top" } do |f| %>
+    <div class="row">
+      <div class="col">
+        <%= f.text_field :name, class: "form-control", placeholder: "Имя" %>
+      </div>
+      <div class="col">
+        <%= f.text_field :estimates, class: "form-control", placeholder: "Оценки" %>
+      </div>
+    </div>
+
+    <%= f.submit "Создать", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+

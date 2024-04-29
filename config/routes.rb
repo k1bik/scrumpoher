@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "poker_sessions#index"
+
+  resources :poker_sessions do
+    resources :poker_session_participants
+  end
 end
