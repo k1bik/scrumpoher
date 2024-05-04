@@ -6,10 +6,14 @@ class PokerSessionsController < ApplicationController
 
   def show
     poker_session_id = params[:id]
-    @poker_session = PokerSession.find poker_session_id
-    poker_session_context = PokerSession.build_context(session:, poker_session_id:)
+    @poker_session =
+      PokerSession.includes(poker_session_participants: :poker_session_participant_estimate).find poker_session_id
 
-    if poker_session_context
+    item = session[:poker_sessions]&.find { _1["poker_session_id"] == poker_session_id }
+
+    if item
+      @participant = PokerSessionParticipant.find item["participant_id"]
+
       render :show
     else
       redirect_to new_poker_session_poker_session_participant_path(poker_session_id)

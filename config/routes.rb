@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   root "poker_sessions#index"
 
   resources :poker_sessions do
-    resources :poker_session_participants
+    resources :poker_session_participants do
+      resources :poker_session_participant_estimates
+    end
   end
 end
