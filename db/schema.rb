@@ -34,7 +34,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_190206) do
   end
 
   create_table "poker_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
     t.string "estimates", null: false
     t.boolean "show_estimates", default: false, null: false
     t.datetime "created_at", null: false

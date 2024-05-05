@@ -1,12 +1,16 @@
-<%= turbo_frame_tag :form do %>
-  <%= form_with scope: :poker_session_participant, url: poker_session_poker_session_participants_path(@view_model.poker_session_id), data: { turbo_frame: "_top" } do |f| %>
-    <div class="row">
-      <div class="col">
-        <%= f.text_field :name, class: "form-control", placeholder: "Имя" %>
+<div style="width: 400px" class="container mx-auto mt-4">
+  <%= turbo_frame_tag :form do %>
+    <h3>
+      Вход в покер сессию
+    </h3>
+    <%= form_with scope: :poker_session_participant, url: poker_session_poker_session_participants_path(@view_model.poker_session_id), data: { turbo_frame: "_top" } do |f| %>
+      <div class="row mb-2">
+        <div class="col">
+          <%= f.text_field :name, class: "form-control", placeholder: "Имя" %>
+        </div>
       </div>
-    </div>
 
-    <%= f.submit "Создать", class: "btn btn-primary" %>
+      <%= f.submit "Войти", class: "btn btn-primary" %>
+    <% end %>
   <% end %>
-<% end %>
-
+</div>

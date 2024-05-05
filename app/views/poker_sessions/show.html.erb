@@ -1,7 +1,6 @@
 <%= turbo_stream_from dom_id(@poker_session) %>
 
 <div class="container">
-  <h2 class="d-flex justify-content-end"><%= @poker_session.name %></h2>
   <%= turbo_frame_tag :estimates do %>
     <%= render "estimates", poker_session: @poker_session, participant: @participant %>
   <% end %>

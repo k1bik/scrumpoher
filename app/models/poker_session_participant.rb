@@ -2,7 +2,7 @@
 
 class PokerSessionParticipant < ApplicationRecord
   belongs_to :poker_session
-  has_one :poker_session_participant_estimate
+  has_one :poker_session_participant_estimate, dependent: :destroy
 
   scope :not_disabled, -> { where(is_disabled: false) }
 

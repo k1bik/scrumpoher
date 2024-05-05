@@ -1,8 +1,6 @@
 # typed: true
 
 class PokerSessionsController < ApplicationController
-  def index; end
-
   def show
     poker_session_id = params[:id]
     @poker_session =
@@ -19,9 +17,9 @@ class PokerSessionsController < ApplicationController
     @view_model = PokerSessions::CreateModel.new(create_poker_session_params)
 
     if @view_model.valid?
-      poker_sesion = PokerSessions::Service.new.create_poker_session!(@view_model)
+      poker_sesion = PokerSession.create!(estimates: @view_model.estimates)
 
-      redirect_to poker_session_path(poker_sesion)
+      redirect_to poker_session_path(poker_sesion), turbo_frame: "_top"
     else
       render :new, status: :unprocessable_entity
     end

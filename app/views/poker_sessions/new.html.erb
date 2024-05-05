@@ -1,11 +1,9 @@
-<%= turbo_frame_tag :form do %>
-  <%= form_with scope: :poker_session, url: poker_sessions_path, data: { turbo_frame: "_top" } do |f| %>
-    <div class="row">
-      <div class="col">
-        <%= f.text_field :name, class: "form-control", placeholder: "Имя" %>
-      </div>
+<%= turbo_frame_tag PokerSession.new do %>
+  <%= form_with scope: :poker_session, url: poker_sessions_path do |f| %>
+    <div class="row mb-2">
       <div class="col">
         <%= f.text_field :estimates, class: "form-control", placeholder: "Оценки" %>
+        <small class="form-text text-muted">Введите оценки через запятую</small>
       </div>
     </div>
 

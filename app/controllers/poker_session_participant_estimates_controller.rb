@@ -22,16 +22,6 @@ class PokerSessionParticipantEstimatesController < ApplicationController
       locals: {poker_session:},
       target: :table
     )
-
-    respond_to do |f|
-      f.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          :estimates,
-          partial: "poker_sessions/estimates",
-          locals: { poker_session:, participant: poker_session_participant.reload }
-        )
-      end
-    end
   end
 
   private def create_poker_session_participant_estimate_params
