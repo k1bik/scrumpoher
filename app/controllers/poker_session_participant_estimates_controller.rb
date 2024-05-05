@@ -2,6 +2,8 @@
 
 class PokerSessionParticipantEstimatesController < ApplicationController
   def create
+    return if !set_poker_session_context(create_poker_session_participant_estimate_params[:poker_session_id])
+
     poker_session = PokerSession.find create_poker_session_participant_estimate_params[:poker_session_id]
     poker_session_participant =
       PokerSessionParticipant
@@ -13,6 +15,13 @@ class PokerSessionParticipantEstimatesController < ApplicationController
     else
       PokerSessionParticipantEstimate.create! create_poker_session_participant_estimate_params
     end
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      "poker_session_#{create_poker_session_participant_estimate_params[:poker_session_id]}",
+      partial: "poker_sessions/table",
+      locals: {poker_session:},
+      target: :table
+    )
   end
 
   private def create_poker_session_participant_estimate_params

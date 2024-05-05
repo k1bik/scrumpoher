@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root "poker_sessions#index"
 
   resources :poker_sessions do
+    post '/toggle_estimates_visibility', to: 'poker_sessions#toggle_estimates_visibility'
+    post '/delete_estimates', to: 'poker_sessions#delete_estimates'
+
     resources :poker_session_participants do
       resources :poker_session_participant_estimates
     end

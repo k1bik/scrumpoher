@@ -16,7 +16,16 @@ class PokerSessionParticipantsController < ApplicationController
         session:
       )
 
+      poker_session = PokerSession.find params[:poker_session_id]
+
       redirect_to poker_session_path(@view_model.poker_session_id), notice: "Успешно!"
+
+      Turbo::StreamsChannel.broadcast_update_to(
+        "poker_session_#{@view_model.poker_session_id}",
+        partial: "poker_sessions/table",
+        locals: {poker_session:},
+        target: :table
+      )
     else
       render :new, status: :unprocessable_entity
     end
