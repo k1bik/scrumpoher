@@ -12,11 +12,14 @@ module PokerSessionParticipants
           poker_session_id: view_model.poker_session_id
         )
 
-        PokerSession.add_to_session(
-          session:,
-          poker_session_id: view_model.poker_session_id,
-          participant_id: participant.id
-        )
+        session[:poker_sessions] ||= []
+        existing_record = session[:poker_sessions].find {  _1["poker_session_id"] == view_model.poker_session_id }
+
+        if existing_record
+          existing_record["participant_id"] = participant.id
+        else
+          session[:poker_sessions] << { poker_session_id: view_model.poker_session_id, participant_id: participant.id }
+        end
       end
     end
   end

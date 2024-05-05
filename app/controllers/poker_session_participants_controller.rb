@@ -31,6 +31,30 @@ class PokerSessionParticipantsController < ApplicationController
     end
   end
 
+  def remove_disabled
+    poker_session = PokerSession.find params[:poker_session_id]
+    PokerSessionParticipant.find(params[:poker_session_participant_id]).update(is_disabled: false)
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      "poker_session_#{params[:poker_session_id]}",
+      partial: "poker_sessions/table",
+      locals: {poker_session:},
+      target: :table
+    )
+  end
+
+  def add_disabled
+    poker_session = PokerSession.find params[:poker_session_id]
+    PokerSessionParticipant.find(params[:poker_session_participant_id]).update(is_disabled: true)
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      "poker_session_#{params[:poker_session_id]}",
+      partial: "poker_sessions/table",
+      locals: {poker_session:},
+      target: :table
+    )
+  end
+
   private def create_poker_session_participant_params
     params.require(:poker_session_participant).permit(:name)
   end

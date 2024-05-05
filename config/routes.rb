@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     post '/delete_estimates', to: 'poker_sessions#delete_estimates'
 
     resources :poker_session_participants do
+      post '/remove_disabled', to: 'poker_session_participants#remove_disabled'
+      post '/add_disabled', to: 'poker_session_participants#add_disabled'
       resources :poker_session_participant_estimates
     end
   end

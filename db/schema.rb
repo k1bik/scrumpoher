@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_190206) do
 
   create_table "poker_session_participants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.boolean "is_disabled", default: false, null: false
     t.uuid "poker_session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

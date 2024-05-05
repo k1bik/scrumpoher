@@ -21,7 +21,7 @@ class PokerSessionsController < ApplicationController
     if @view_model.valid?
       poker_sesion = PokerSessions::Service.new.create_poker_session!(@view_model)
 
-      redirect_to poker_session_path(poker_sesion), nottice: "Успешно создано!"
+      redirect_to poker_session_path(poker_sesion)
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,6 +48,7 @@ class PokerSessionsController < ApplicationController
     poker_session = PokerSession.find params[:poker_session_id]
 
     PokerSessionParticipantEstimate.where(poker_session_id: params[:poker_session_id]).destroy_all
+    poker_session.update!(show_estimates: false)
 
     Turbo::StreamsChannel.broadcast_update_to(
       "poker_session_#{params[:poker_session_id]}",

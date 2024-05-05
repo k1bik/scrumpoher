@@ -1,0 +1,10 @@
+<div class="d-flex mt-4 mb-4 flex-wrap justify-content-center gap-2">
+  <% poker_session.estimates.split(",").each do |estimate| %>
+    <%= button_to estimate,
+                  poker_session_poker_session_participant_poker_session_participant_estimates_path(poker_session.id, participant.id),
+                  method: :post,
+                  class: "btn btn-lg btn-outline-secondary",
+                  params: { value: estimate }
+    %>
+  <% end %>
+</div>
