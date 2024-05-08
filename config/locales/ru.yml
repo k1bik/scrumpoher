@@ -1,0 +1,14 @@
+ru:
+  activerecord:
+    models:
+      poker_session:
+        one: "Сессия"
+        other: "Сессии"
+    attributes:
+      poker_session:
+        estimates: "Оценки"
+      poker_session_participant:
+        name: "Имя"
+  errors:
+    messages:
+      blank: "не может отсутствовать"

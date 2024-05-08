@@ -13,10 +13,12 @@ module PokerSessionParticipants
         )
 
         session[:poker_sessions] ||= []
-        existing_record = session[:poker_sessions].find {  _1["poker_session_id"] == view_model.poker_session_id }
+        session[:poker_sessions] = [] if session[:poker_sessions].size > 5
 
-        if existing_record
-          existing_record["participant_id"] = participant.id
+        context = session[:poker_sessions].find {  _1["poker_session_id"] == view_model.poker_session_id }
+
+        if context
+          context["participant_id"] = participant.id
         else
           session[:poker_sessions] << { poker_session_id: view_model.poker_session_id, participant_id: participant.id }
         end

@@ -1,12 +1,13 @@
 <%= turbo_stream_from dom_id(@poker_session) %>
+<%= turbo_stream_from @participant.id %>
 
 <div class="container">
   <%= turbo_frame_tag :estimates do %>
     <%= render "estimates", poker_session: @poker_session, participant: @participant %>
   <% end %>
 
-  <% if @participant.is_disabled %>
-    <%= button_to "Хочу играть", poker_session_poker_session_participant_remove_disabled_path(@poker_session.id, @participant.id), class: "btn btn-primary", method: :post %>
+  <%= turbo_frame_tag :test do %>
+    <%= render "test", poker_session: @poker_session, participant: @participant %>
   <% end %>
 
   <%= turbo_frame_tag :table do %>

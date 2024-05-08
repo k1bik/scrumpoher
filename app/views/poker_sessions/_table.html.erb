@@ -1,7 +1,19 @@
-<div class="d-flex-column justify-content-center">
-  <div class="d-flex justify-content-end gap-2">
-    <%= button_to poker_session.show_estimates ? "Закрыть оценки" : "Открыть оценки", poker_session_toggle_estimates_visibility_path(poker_session.id), class: "btn btn-primary", method: :post %>
-    <%= button_to "Удалить оценки", poker_session_delete_estimates_path(poker_session.id), class: "btn btn-primary", method: :post %>
+<div class="d-flex-column justify-content-center mt-4">
+  <div class="d-flex justify-content-end gap-2 mb-2">
+    <%= button_to poker_session.show_estimates ? "Закрыть оценки" : "Открыть оценки",
+                  poker_session_toggle_estimates_visibility_path(poker_session.id),
+                  class: "btn btn-primary"
+    %>
+    <%= button_to "Редактировать оценки",
+                  edit_poker_session_path(poker_session),
+                  class: "btn btn-outline-primary",
+                  data: {turbo_frame: "_top" },
+                  method: :get
+    %>
+    <%= button_to "Удалить оценки",
+                  poker_session_delete_estimates_path(poker_session.id),
+                  class: "btn btn-danger"
+    %>
   </div>
   <table class="table table-striped">
     <thead>
@@ -20,7 +32,7 @@
               <%= participant.poker_session_participant_estimate&.value %>
             <% else %>
               <% if participant.poker_session_participant_estimate&.value.present? %>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="25" height="25">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
                 </svg>
               <% else %>
@@ -29,7 +41,10 @@
             <% end %>
           </td>
           <td>
-            <%= button_to "Скрыть", poker_session_poker_session_participant_add_disabled_path(poker_session.id, participant.id), class: "btn btn-sm btn-outline-dark", method: :post %>
+            <%= button_to "Скрыть",
+                          poker_session_poker_session_participant_add_disabled_path(poker_session.id, participant.id),
+                          class: "btn btn-sm btn-outline-dark"
+            %>
           </td>
         </tr>
       <% end %>

@@ -22,6 +22,13 @@ class PokerSessionParticipantEstimatesController < ApplicationController
       locals: {poker_session:},
       target: :table
     )
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      poker_session_participant.id,
+      partial: "poker_sessions/estimates",
+      locals: {poker_session:, participant: poker_session_participant.reload},
+      target: :estimates
+    )
   end
 
   private def create_poker_session_participant_estimate_params

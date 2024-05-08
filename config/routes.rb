@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :home, only: :index
 
-  resources :poker_sessions, only: [:show, :new, :create] do
+  resources :poker_sessions, only: [:show, :new, :create, :edit, :update] do
     post '/toggle_estimates_visibility', to: 'poker_sessions#toggle_estimates_visibility'
     post '/delete_estimates', to: 'poker_sessions#delete_estimates'
 

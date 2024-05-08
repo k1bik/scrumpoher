@@ -33,7 +33,8 @@ class PokerSessionParticipantsController < ApplicationController
 
   def remove_disabled
     poker_session = PokerSession.find params[:poker_session_id]
-    PokerSessionParticipant.find(params[:poker_session_participant_id]).update(is_disabled: false)
+    participant = PokerSessionParticipant.find(params[:poker_session_participant_id])
+    participant.update!(is_disabled: false)
 
     Turbo::StreamsChannel.broadcast_update_to(
       "poker_session_#{params[:poker_session_id]}",
@@ -41,17 +42,46 @@ class PokerSessionParticipantsController < ApplicationController
       locals: {poker_session:},
       target: :table
     )
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      params[:poker_session_participant_id],
+      partial: "poker_sessions/test",
+      locals: {poker_session:, participant:},
+      target: :test
+    )
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      params[:poker_session_participant_id],
+      partial: "poker_sessions/estimates",
+      locals: {poker_session:, participant:},
+      target: :estimates
+    )
   end
 
   def add_disabled
     poker_session = PokerSession.find params[:poker_session_id]
-    PokerSessionParticipant.find(params[:poker_session_participant_id]).update(is_disabled: true)
+    participant = PokerSessionParticipant.find(params[:poker_session_participant_id])
+    participant.update!(is_disabled: true)
 
     Turbo::StreamsChannel.broadcast_update_to(
       "poker_session_#{params[:poker_session_id]}",
       partial: "poker_sessions/table",
       locals: {poker_session:},
       target: :table
+    )
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      params[:poker_session_participant_id],
+      partial: "poker_sessions/test",
+      locals: {poker_session:, participant:},
+      target: :test
+    )
+
+    Turbo::StreamsChannel.broadcast_update_to(
+      params[:poker_session_participant_id],
+      partial: "poker_sessions/estimates",
+      locals: {poker_session:, participant:},
+      target: :estimates
     )
   end
 

@@ -1,16 +1,32 @@
 <div style="width: 400px" class="container mx-auto mt-4">
   <%= turbo_frame_tag :form do %>
-    <h3>
-      Вход в покер сессию
-    </h3>
-    <%= form_with scope: :poker_session_participant, url: poker_session_poker_session_participants_path(@view_model.poker_session_id), data: { turbo_frame: "_top" } do |f| %>
+
+    <h3>Вход в покер сессию</h3>
+
+    <%= form_with scope: :poker_session_participant,
+                  url: poker_session_poker_session_participants_path(@view_model.poker_session_id),
+                  data: { turbo_frame: "_top" } do |f|
+    %>
       <div class="row mb-2">
-        <div class="col">
-          <%= f.text_field :name, class: "form-control", placeholder: "Имя" %>
+        <div class="col d-flex-column">
+          <%= f.text_field :name,
+                          class: "form-control #{@view_model.errors.any? ? "is-invalid" : ""}",
+                          placeholder: "Имя",
+                          autofocus: true,
+                          maxlength: PokerSessionParticipants::CreateModel::MAX_NAME_LENGTH,
+                          autocomplete: "off"
+          %>
+
+          <% if @view_model.errors.any? %>
+            <div class="invalid-feedback">
+              <%= @view_model.errors.full_messages_for(:name).join(", ") %>
+            </div>
+          <% end %>
         </div>
       </div>
 
-      <%= f.submit "Войти", class: "btn btn-primary" %>
+      <%= f.submit "Войти", class: "btn btn-primary " %>
     <% end %>
+
   <% end %>
 </div>

@@ -1,13 +1,14 @@
-<%= turbo_frame_tag PokerSession.new do %>
+<div style="width: 400px" class="container mx-auto mt-4">
+  <h3>Редактирование оценок</h3>
 
-  <%= form_with scope: :poker_session, url: poker_sessions_path do |f| %>
+  <%= form_with scope: :poker_session, url: poker_session_path(@poker_session.id), method: :patch do |f| %>
     <div class="row mb-2">
       <div class="col d-flex-column">
         <%= f.text_field :estimates,
                         value: @view_model.estimates,
                         class: "form-control #{@view_model.errors.any? ? "is-invalid" : ""}",
-                        autofocus: true,
                         placeholder: "Оценки",
+                        autofocus: true,
                         maxlength: PokerSessions::CreateModel::MAX_ESTIMATES_LENGTH,
                         autocomplete: "off"
         %>
@@ -25,7 +26,6 @@
       </div>
     </div>
 
-    <%= f.submit "Создать", class: "btn btn-primary" %>
+    <%= f.submit "Обновить", class: "btn btn-primary" %>
   <% end %>
-
-<% end %>
+</div>
