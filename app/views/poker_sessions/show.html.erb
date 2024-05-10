@@ -6,8 +6,8 @@
     <%= render "estimates", poker_session: @poker_session, participant: @participant %>
   <% end %>
 
-  <%= turbo_frame_tag :test do %>
-    <%= render "test", poker_session: @poker_session, participant: @participant %>
+  <%= turbo_frame_tag :activate_participant_button do %>
+    <%= render "activate_participant_button", poker_session: @poker_session, participant: @participant %>
   <% end %>
 
   <%= turbo_frame_tag :table do %>

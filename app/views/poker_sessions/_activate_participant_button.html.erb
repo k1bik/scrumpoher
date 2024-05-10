@@ -1,0 +1,6 @@
+<% if participant.inactive? %>
+  <%= button_to "Вернуться к оцениванию",
+                poker_session_poker_session_participant_deactivate_participant_path(poker_session.id, participant.id),
+                class: "position-absolute btn btn-outline-dark"
+  %>
+<% end %>

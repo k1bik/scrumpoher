@@ -1,14 +1,7 @@
 ru:
-  activerecord:
-    models:
-      poker_session:
-        one: "Сессия"
-        other: "Сессии"
+  activemodel:
     attributes:
-      poker_session:
+      poker_sessions/create_model:
         estimates: "Оценки"
-      poker_session_participant:
+      poker_session_participants/create_model:
         name: "Имя"
-  errors:
-    messages:
-      blank: "не может отсутствовать"

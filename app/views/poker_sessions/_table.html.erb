@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      <% poker_session.poker_session_participants.not_disabled.each do |participant| %>
+      <% poker_session.poker_session_participants.active.each do |participant| %>
         <tr>
           <td><%= participant.name %></td>
           <td>
@@ -42,7 +42,7 @@
           </td>
           <td>
             <%= button_to "Скрыть",
-                          poker_session_poker_session_participant_add_disabled_path(poker_session.id, participant.id),
+                          poker_session_poker_session_participant_activate_participant_path(poker_session.id, participant.id),
                           class: "btn btn-sm btn-outline-dark"
             %>
           </td>

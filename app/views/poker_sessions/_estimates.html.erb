@@ -1,4 +1,4 @@
-<% if !participant.is_disabled %>
+<% if participant.active? %>
   <div class="d-flex mt-4 flex-wrap justify-content-center align-items-center gap-2">
     <% poker_session.estimates.split(",").each do |estimate| %>
       <%= button_to estimate,

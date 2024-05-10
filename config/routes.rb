@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   resources :home, only: :index
 
   resources :poker_sessions, only: [:show, :new, :create, :edit, :update] do
-    post '/toggle_estimates_visibility', to: 'poker_sessions#toggle_estimates_visibility'
-    post '/delete_estimates', to: 'poker_sessions#delete_estimates'
+    post "/toggle_estimates_visibility", to: "poker_sessions#toggle_estimates_visibility"
+    post "/delete_estimates", to: "poker_sessions#delete_estimates"
 
     resources :poker_session_participants, only: [:new, :create] do
-      post '/remove_disabled', to: 'poker_session_participants#remove_disabled'
-      post '/add_disabled', to: 'poker_session_participants#add_disabled'
+      post "/activate_participant", to: "poker_session_participants#activate_participant"
+      post "/deactivate_participant", to: "poker_session_participants#deactivate_participant"
+
       resources :poker_session_participant_estimates, only: :create
     end
   end

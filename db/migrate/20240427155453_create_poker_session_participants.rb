@@ -2,7 +2,7 @@ class CreatePokerSessionParticipants < ActiveRecord::Migration[7.1]
   def change
     create_table :poker_session_participants, id: :uuid do |t|
       t.string :name, null: false
-      t.boolean :is_disabled, null: false, default: false
+      t.boolean :active, null: false, default: true
       t.belongs_to :poker_session, null: false, foreign_key: true, type: :uuid
 
       t.timestamps

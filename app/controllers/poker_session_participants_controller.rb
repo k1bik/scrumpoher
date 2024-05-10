@@ -7,7 +7,7 @@ class PokerSessionParticipantsController < ApplicationController
 
   def create
     @view_model = PokerSessionParticipants::CreateModel.new(
-      create_poker_session_participant_params.merge(poker_session_id: params[:poker_session_id])
+      create_params.merge(poker_session_id: params[:poker_session_id])
     )
 
     if @view_model.valid?
@@ -16,9 +16,9 @@ class PokerSessionParticipantsController < ApplicationController
         session:
       )
 
-      poker_session = PokerSession.find params[:poker_session_id]
+      poker_session = PokerSession.find(@view_model.poker_session_id)
 
-      redirect_to poker_session_path(@view_model.poker_session_id), notice: "Успешно!"
+      redirect_to poker_session_path(@view_model.poker_session_id)
 
       Turbo::StreamsChannel.broadcast_update_to(
         "poker_session_#{@view_model.poker_session_id}",
@@ -31,10 +31,10 @@ class PokerSessionParticipantsController < ApplicationController
     end
   end
 
-  def remove_disabled
-    poker_session = PokerSession.find params[:poker_session_id]
+  def deactivate_participant
+    poker_session = PokerSession.find(params[:poker_session_id])
     participant = PokerSessionParticipant.find(params[:poker_session_participant_id])
-    participant.update!(is_disabled: false)
+    participant.update!(active: true)
 
     Turbo::StreamsChannel.broadcast_update_to(
       "poker_session_#{params[:poker_session_id]}",
@@ -45,9 +45,9 @@ class PokerSessionParticipantsController < ApplicationController
 
     Turbo::StreamsChannel.broadcast_update_to(
       params[:poker_session_participant_id],
-      partial: "poker_sessions/test",
+      partial: "poker_sessions/activate_participant_button",
       locals: {poker_session:, participant:},
-      target: :test
+      target: :activate_participant_button
     )
 
     Turbo::StreamsChannel.broadcast_update_to(
@@ -58,10 +58,10 @@ class PokerSessionParticipantsController < ApplicationController
     )
   end
 
-  def add_disabled
-    poker_session = PokerSession.find params[:poker_session_id]
+  def activate_participant
+    poker_session = PokerSession.find(params[:poker_session_id])
     participant = PokerSessionParticipant.find(params[:poker_session_participant_id])
-    participant.update!(is_disabled: true)
+    participant.update!(active: false)
 
     Turbo::StreamsChannel.broadcast_update_to(
       "poker_session_#{params[:poker_session_id]}",
@@ -72,9 +72,9 @@ class PokerSessionParticipantsController < ApplicationController
 
     Turbo::StreamsChannel.broadcast_update_to(
       params[:poker_session_participant_id],
-      partial: "poker_sessions/test",
+      partial: "poker_sessions/activate_participant_button",
       locals: {poker_session:, participant:},
-      target: :test
+      target: :activate_participant_button
     )
 
     Turbo::StreamsChannel.broadcast_update_to(
@@ -85,7 +85,7 @@ class PokerSessionParticipantsController < ApplicationController
     )
   end
 
-  private def create_poker_session_participant_params
+  private def create_params
     params.require(:poker_session_participant).permit(:name)
   end
 end

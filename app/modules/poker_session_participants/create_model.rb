@@ -8,7 +8,7 @@ module PokerSessionParticipants
 
     attr_accessor :name, :poker_session_id
 
-    validates_presence_of :name, :poker_session_id
+    validates_presence_of :name, :poker_session_id, message: "не может отсутствовать"
     validates_length_of :name, maximum: MAX_NAME_LENGTH
   end
 end

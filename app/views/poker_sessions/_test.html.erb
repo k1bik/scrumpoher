@@ -1,8 +1,0 @@
-<% if participant.is_disabled %>
-  <div class="position-absolute">
-    <%= button_to "Вернуться к оцениванию",
-                  poker_session_poker_session_participant_remove_disabled_path(poker_session.id, participant.id),
-                  class: "btn btn-outline-dark"
-    %>
-  </div>
-<% end %>
