@@ -12,10 +12,7 @@ module GeneratedPathHelpersModule
   def edit_poker_session_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_poker_session_poker_session_participant_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def edit_poker_session_poker_session_participant_poker_session_participant_estimate_path(*args); end
+  def home_index_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_poker_session_path(*args); end
@@ -24,28 +21,31 @@ module GeneratedPathHelpersModule
   def new_poker_session_poker_session_participant_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_poker_session_poker_session_participant_poker_session_participant_estimate_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def new_rails_conductor_inbound_email_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_rails_conductor_inbound_email_source_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def poker_session_delete_estimates_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def poker_session_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def poker_session_poker_session_participant_path(*args); end
+  def poker_session_poker_session_participant_activate_participant_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def poker_session_poker_session_participant_poker_session_participant_estimate_path(*args); end
+  def poker_session_poker_session_participant_deactivate_participant_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def poker_session_poker_session_participant_poker_session_participant_estimates_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def poker_session_poker_session_participants_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def poker_session_toggle_estimates_visibility_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def poker_sessions_path(*args); end

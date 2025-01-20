@@ -9,16 +9,10 @@ module GeneratedUrlHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_poker_session_poker_session_participant_poker_session_participant_estimate_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def edit_poker_session_poker_session_participant_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def edit_poker_session_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def new_poker_session_poker_session_participant_poker_session_participant_estimate_url(*args); end
+  def home_index_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_poker_session_poker_session_participant_url(*args); end
@@ -33,16 +27,22 @@ module GeneratedUrlHelpersModule
   def new_rails_conductor_inbound_email_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def poker_session_poker_session_participant_poker_session_participant_estimate_url(*args); end
+  def poker_session_delete_estimates_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def poker_session_poker_session_participant_activate_participant_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def poker_session_poker_session_participant_deactivate_participant_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def poker_session_poker_session_participant_poker_session_participant_estimates_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def poker_session_poker_session_participant_url(*args); end
+  def poker_session_poker_session_participants_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def poker_session_poker_session_participants_url(*args); end
+  def poker_session_toggle_estimates_visibility_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def poker_session_url(*args); end

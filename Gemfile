@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "sorbet-runtime"
 
 group :development, :test do
+  gem "dotenv"
   gem "tapioca", require: false
   gem "debug", platforms: %i[ mri windows ]
 end

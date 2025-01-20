@@ -1,4 +1,4 @@
-# typed: strict
+# typed: true
 
 class PokerSessionParticipant < ApplicationRecord
   belongs_to :poker_session

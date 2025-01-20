@@ -698,51 +698,6 @@ class PokerSession
     sig { void }
     def id_will_change!; end
 
-    sig { returns(::String) }
-    def name; end
-
-    sig { params(value: ::String).returns(::String) }
-    def name=(value); end
-
-    sig { returns(T::Boolean) }
-    def name?; end
-
-    sig { returns(T.nilable(::String)) }
-    def name_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def name_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def name_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def name_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def name_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def name_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def name_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def name_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def name_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def name_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def name_was; end
-
-    sig { void }
-    def name_will_change!; end
-
     sig { void }
     def restore_created_at!; end
 
@@ -756,7 +711,7 @@ class PokerSession
     def restore_id_value!; end
 
     sig { void }
-    def restore_name!; end
+    def restore_show_estimates!; end
 
     sig { void }
     def restore_updated_at!; end
@@ -785,17 +740,62 @@ class PokerSession
     sig { returns(T::Boolean) }
     def saved_change_to_id_value?; end
 
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_name; end
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def saved_change_to_show_estimates; end
 
     sig { returns(T::Boolean) }
-    def saved_change_to_name?; end
+    def saved_change_to_show_estimates?; end
 
     sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
     def saved_change_to_updated_at; end
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T::Boolean) }
+    def show_estimates; end
+
+    sig { params(value: T::Boolean).returns(T::Boolean) }
+    def show_estimates=(value); end
+
+    sig { returns(T::Boolean) }
+    def show_estimates?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def show_estimates_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def show_estimates_came_from_user?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def show_estimates_change; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def show_estimates_change_to_be_saved; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def show_estimates_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_in_database; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def show_estimates_previous_change; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def show_estimates_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_previously_was; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_was; end
+
+    sig { void }
+    def show_estimates_will_change!; end
 
     sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
     def updated_at; end
@@ -855,7 +855,7 @@ class PokerSession
     def will_save_change_to_id_value?; end
 
     sig { returns(T::Boolean) }
-    def will_save_change_to_name?; end
+    def will_save_change_to_show_estimates?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
