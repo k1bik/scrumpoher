@@ -14,6 +14,8 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "sorbet-runtime"
+gem "ed25519", "~> 1.2"
+gem "bcrypt_pbkdf", "~> 1.0"
 
 group :development, :test do
   gem "dotenv"
