@@ -5,4 +5,4 @@ test:
   url: <%= "postgresql://development:development@localhost:5432/scrumpoher_test" %>
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV["DATABASE_URL"] %>
